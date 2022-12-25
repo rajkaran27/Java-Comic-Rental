@@ -1,19 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package CA1;
 
+
+
 /**
- *
- * @author rajka
+ *M.Rajkaran
+ * 2109039
+ * DIT/FT/1B/02
+ * 
  */
 public class Comic {
 
     private String ISBN, Title;
     private int Pages;
     private double Price;
+    
+    
 
+    
     public Comic(String ISBN, String Title, int Pages, double Price) {
         this.ISBN = ISBN;
         this.Title = Title;
@@ -45,6 +49,5 @@ public class Comic {
         return String.format("%.2f", (Price/20));
     }
     
-    
-    
+
 }

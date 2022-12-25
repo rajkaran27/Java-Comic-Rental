@@ -6,8 +6,10 @@ package CA1;
 
 
 /**
- *
- * @author rajka
+ *M.Rajkaran
+ * 2109039
+ * DIT/FT/1B/02
+ * 
  */
 public class Rentee {
 
