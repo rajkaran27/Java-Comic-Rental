@@ -16,7 +16,7 @@ public class RentalSystem {
     public RentalSystem() {
 
         //new Comics
-        Comic C1 = new Comic("978-0785199618", "One Indian Girl", 20, 15.0);
+        Comic C1 = new Comic("978-08785199618", "One Indian Girl", 20, 15.0);
         Comic C2 = new Comic("978-0785199619", "The Seven Husbands ", 20, 15.0);
         Comic C3 = new Comic("978-0785199620", "The After Series", 20, 15.0);
         Comic C4 = new Comic("978-0785199621", "My Little Epiphanies", 20, 15.0);
