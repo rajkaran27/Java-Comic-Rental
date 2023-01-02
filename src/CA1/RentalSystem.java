@@ -16,10 +16,10 @@ public class RentalSystem {
     public RentalSystem() {
 
         //new Comics
-        Comic C1 = new Comic("978-08785199618", "One Indian Girl", 20, 15.0);
-        Comic C2 = new Comic("978-0785199619", "The Seven Husbands ", 20, 15.0);
-        Comic C3 = new Comic("978-0785199620", "The After Series", 20, 15.0);
-        Comic C4 = new Comic("978-0785199621", "My Little Epiphanies", 20, 15.0);
+        Comic C1 = new Comic("978-0785199618", "One Indian Girl", 20, 15.0);
+        Comic C2 = new Comic("978-0785190219", "The Seven Husbands ", 20, 15.0);
+        Comic C3 = new Comic("978-0785198956", "The After Series", 20, 15.0);
+        Comic C4 = new Comic("978-0785156598", "My Little Epiphanies", 20, 15.0);
 
         //Adding books to Comic array
         Comics.add(C1);
@@ -49,9 +49,9 @@ public class RentalSystem {
 
         //Creating members and adding them to members array
         Members[0] = new Rentee("M2109039", "Rajkaran", comicLoanedby1);
-        Members[1] = new Rentee("M2209039", "Dreamybull", comicLoanedby2);
-        Members[2] = new Rentee("M2309039", "Mia", comicLoanedby3);
-        Members[3] = new Rentee("M2409039", "Malkova", comicLoanedby4);
+        Members[1] = new Rentee("M2209039", "Anil", comicLoanedby2);
+        Members[2] = new Rentee("M2309039", "Amai", comicLoanedby3);
+        Members[3] = new Rentee("M2409039", "Potta Surya", comicLoanedby4);
 
     }
 
@@ -78,20 +78,27 @@ public class RentalSystem {
                 }
 
                 option = Integer.parseInt(opt);
+                // to ensure input is integer
 
             } catch (NumberFormatException e)
             {
+
                 JOptionPane.showMessageDialog(null, "Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+
                 continue;
             }
 
+            // validating option entered
             if (option > 6 || option <= 0)
             {
+
                 JOptionPane.showMessageDialog(null, "Invalid option! Please enter in the range from 1 to 5", "Error", JOptionPane.ERROR_MESSAGE);
 
             } else
+
             {
                 switch (option)
+
                 {
                     case 1:
 
@@ -119,24 +126,32 @@ public class RentalSystem {
                         }
 
                         String ISBNmsg = "Cannot find the Comic \"" + SearchISBN + "\"!!";
+
                         boolean ISBNer = true;
+
                         for (int i = 0; i < Comics.size(); i++)
                         {
                             if (SearchISBN.equals(Comics.get(i).getISBN()))
                             {
+
                                 ISBNmsg = Comics.get(i).getTitle() + "\n\nStock purchased at $" + Comics.get(i).getPrice() + ".\nCost $" + Comics.get(i).getRentalFee() + " per day to rent." + "\nRequire deposit of $" + Comics.get(i).getDepositFee();
+
                                 ISBNer = false;
                             }
                         }
 
+                        //if else statement to decide which messagedialog will be sent
                         if (!ISBNer)
                         {
+
+                            //if book is found
                             JOptionPane.showMessageDialog(null,
                                     ISBNmsg,
                                     "Message",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else
                         {
+                            // if book is not found
                             JOptionPane.showMessageDialog(null, ISBNmsg, "Info", JOptionPane.ERROR_MESSAGE);
                         }
 
@@ -153,6 +168,7 @@ public class RentalSystem {
                         }
 
                         String msg = "Cannot find the Member \"" + SearchMembID + "\"!!";
+
                         boolean errorNo = true;
 
                         for (int i = 0; i < Members.length; i++)
@@ -160,6 +176,7 @@ public class RentalSystem {
                             if (SearchMembID.equals(Members[i].getID()))
                             {
                                 msg = "MemberID\t| Name\n-------------------------------------------\n" + Members[i].getID() + "\n" + Members[i].getName() + "\n\n" + "Comics Loaned:\n" + Members[i].getComicsTitle() + "\n\n\nTotal Rental Per Day: $" + String.format("%.2f", Members[i].getComicsPrice());
+
                                 errorNo = false;
                             }
 
@@ -170,23 +187,31 @@ public class RentalSystem {
                         {
 
                             JOptionPane.showMessageDialog(null, msg, "Info", JOptionPane.INFORMATION_MESSAGE);
+
                         } else
                         {
+
                             JOptionPane.showMessageDialog(null, msg, "Info", JOptionPane.ERROR_MESSAGE);
+
                         }
 
                         break;
+
                     case 4:
 
                         double totalEarning = 0;
+
                         for (int i = 0; i < Members.length; i++)
                         {
+
                             totalEarning += Members[i].getComicsPrice();
+
                         }
 
                         String Totalmsg = "Earning Per Day:\n------------------\n\nThere are " + Members.length + " Rentees in total.\n\nAverage earning per day based on number of rentees is $" + String.format("%.2f", totalEarning / Members.length) + ".\n\nTotal earning per day is $" + String.format("%.2f", totalEarning) + ".";
 
                         JOptionPane.showMessageDialog(null, Totalmsg, "Info", JOptionPane.INFORMATION_MESSAGE);
+
                         break;
 
                     case 5:
@@ -198,8 +223,11 @@ public class RentalSystem {
                             break;
                         }
 
-                        String password = "Admin123";
+                        //Admin password
+                        String password = "Admin";
+
                         int AdOp = 0;
+
                         if (Admin.equals(password))
                         {
 
@@ -209,7 +237,8 @@ public class RentalSystem {
                                 try
                                 {
                                     String AO = JOptionPane.showInputDialog(null, "Enter your optionL\n1. Add a new book\n2. Delete an existing book\n3.Exit");
-
+                                    
+                                    // if user selects cancel or cross button, program returns to main menu
                                     if (AO == null)
                                     {
                                         break;
@@ -230,9 +259,38 @@ public class RentalSystem {
                                     switch (AdOp)
                                     {
                                         case 1:
-                                            String ISBN = JOptionPane.showInputDialog(null, "Enter ISBN-13:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
 
+                                            String ISBN = JOptionPane.showInputDialog(null, "Enter ISBN-13:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+                                            
+                                            // to check if user selects cancel, if they do, it returns them to admin menu
+                                            if (ISBN == null)
+                                            {
+                                                break;
+                                            }
+
+                                            boolean doesExist = false;
+                                            for (int i = 0; i < Comics.size(); i++)
+                                            {
+                                                if (Comics.get(i).getISBN().equals(ISBN))
+                                                {
+                                                    doesExist= true;
+                                                    break;
+                                                }
+                                            }
+                                            
+                                            if (doesExist)
+                                            {
+                                                JOptionPane.showMessageDialog(null, "A Comic with that ISBN already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+                                                break;
+                                            }
+
+                                            // Title
                                             String Title = JOptionPane.showInputDialog(null, "Enter title of the book:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+                                            
+                                            if (Title == null)
+                                            {
+                                                break;
+                                            }
 
                                             int Pages = 0;
                                             boolean validInput = false;
@@ -242,6 +300,12 @@ public class RentalSystem {
                                                 try
                                                 {
                                                     String Pg = JOptionPane.showInputDialog(null, "Enter the number of pages:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+
+                                                    if (Pg == null)
+                                                    {
+                                                        break;
+                                                    }
+
                                                     Pages = Integer.parseInt(Pg);
                                                     validInput = true;
                                                 } catch (NumberFormatException e)
@@ -257,29 +321,59 @@ public class RentalSystem {
                                                 try
                                                 {
                                                     String Pr = JOptionPane.showInputDialog(null, "Enter the price of the book:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+
+                                                    if (Pr == null)
+                                                    {
+                                                        break;
+                                                    }
+
                                                     Price = Double.parseDouble(Pr);
                                                     validInput = true;
+
                                                 } catch (NumberFormatException e)
                                                 {
                                                     JOptionPane.showMessageDialog(null, "Please enter a valid price");
                                                 }
                                             }
 
+                                            //Adding new comic
                                             Comic newComic = new Comic(ISBN, Title, Pages, Price);
                                             Comics.add(newComic);
 
                                             break;
 
                                         case 2:
+
+                                            //Searching through comic array with ISBN
                                             String ISBNDel = JOptionPane.showInputDialog(null, "Enter ISBN-13:", "Remove Book", JOptionPane.INFORMATION_MESSAGE);
+
+                                            if (ISBNDel == null)
+                                            {
+                                                break;
+                                            }
+
+                                            ISBNmsg = "Cannot find the Comic \"" + ISBNDel + "\"!!";
+                                            boolean DeleteISBN = true;
                                             int indexDel;
                                             for (int i = 0; i < Comics.size(); i++)
                                             {
                                                 if (ISBNDel.equals(Comics.get(i).getISBN()))
                                                 {
+                                                    indexDel = i;
+                                                    ISBNmsg = "Book of ISBN \'" + ISBNDel + "\' has been deleted";
+                                                    //deleting comic
                                                     Comics.remove(Comics.get(i));
-                                                    JOptionPane.showMessageDialog(null, "Book has been deleted");
+
                                                 }
+                                            }
+
+                                            if (!DeleteISBN)
+                                            {
+                                                JOptionPane.showMessageDialog(null, ISBNmsg, "Info", JOptionPane.ERROR_MESSAGE);
+                                                
+                                            } else
+                                            {
+                                                JOptionPane.showMessageDialog(null, ISBNmsg, "Message", JOptionPane.INFORMATION_MESSAGE);
                                             }
 
                                             break;
@@ -302,6 +396,7 @@ public class RentalSystem {
             }
         } while (option != 6);
 
+        //to calculate end time
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
         long minutes = elapsedTime / 60000000000L;
