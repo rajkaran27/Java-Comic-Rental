@@ -237,7 +237,7 @@ public class RentalSystem {
                                 try
                                 {
                                     String AO = JOptionPane.showInputDialog(null, "Enter your optionL\n1. Add a new book\n2. Delete an existing book\n3.Exit");
-                                    
+
                                     // if user selects cancel or cross button, program returns to main menu
                                     if (AO == null)
                                     {
@@ -260,24 +260,30 @@ public class RentalSystem {
                                     {
                                         case 1:
 
-                                            String ISBN = JOptionPane.showInputDialog(null, "Enter ISBN-13:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
-                                            
-                                            // to check if user selects cancel, if they do, it returns them to admin menu
-                                            if (ISBN == null)
+                                            //ISBN
+                                            String ISBN;
+                                            do
                                             {
-                                                break;
-                                            }
+                                                ISBN = JOptionPane.showInputDialog(null, "Enter ISBN-13:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+                                                //check if input is empty
+                                                if (ISBN.trim().isEmpty())
+                                                {
+                                                    JOptionPane.showMessageDialog(null, "Please enter an ISBN.", "Error", JOptionPane.ERROR_MESSAGE);
+                                                }
 
+                                            } while (ISBN.trim().isEmpty());
+
+                                            // to check if ISBN exists
                                             boolean doesExist = false;
                                             for (int i = 0; i < Comics.size(); i++)
                                             {
                                                 if (Comics.get(i).getISBN().equals(ISBN))
                                                 {
-                                                    doesExist= true;
+                                                    doesExist = true;
                                                     break;
                                                 }
                                             }
-                                            
+
                                             if (doesExist)
                                             {
                                                 JOptionPane.showMessageDialog(null, "A Comic with that ISBN already exists!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -285,12 +291,16 @@ public class RentalSystem {
                                             }
 
                                             // Title
-                                            String Title = JOptionPane.showInputDialog(null, "Enter title of the book:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
-                                            
-                                            if (Title == null)
+                                            String Title;
+                                            do
                                             {
-                                                break;
-                                            }
+                                                Title = JOptionPane.showInputDialog(null, "Enter title of the book:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
+                                                //check if input is empty
+                                                if (Title.trim().isEmpty())
+                                                {
+                                                    JOptionPane.showMessageDialog(null, "Please enter a Title.", "Error", JOptionPane.ERROR_MESSAGE);
+                                                }
+                                            } while (Title.trim().isEmpty());
 
                                             int Pages = 0;
                                             boolean validInput = false;
@@ -300,12 +310,6 @@ public class RentalSystem {
                                                 try
                                                 {
                                                     String Pg = JOptionPane.showInputDialog(null, "Enter the number of pages:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
-
-                                                    if (Pg == null)
-                                                    {
-                                                        break;
-                                                    }
-
                                                     Pages = Integer.parseInt(Pg);
                                                     validInput = true;
                                                 } catch (NumberFormatException e)
@@ -321,12 +325,6 @@ public class RentalSystem {
                                                 try
                                                 {
                                                     String Pr = JOptionPane.showInputDialog(null, "Enter the price of the book:", "Add Book", JOptionPane.INFORMATION_MESSAGE);
-
-                                                    if (Pr == null)
-                                                    {
-                                                        break;
-                                                    }
-
                                                     Price = Double.parseDouble(Pr);
                                                     validInput = true;
 
@@ -370,7 +368,7 @@ public class RentalSystem {
                                             if (!DeleteISBN)
                                             {
                                                 JOptionPane.showMessageDialog(null, ISBNmsg, "Info", JOptionPane.ERROR_MESSAGE);
-                                                
+
                                             } else
                                             {
                                                 JOptionPane.showMessageDialog(null, ISBNmsg, "Message", JOptionPane.INFORMATION_MESSAGE);
