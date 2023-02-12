@@ -18,11 +18,12 @@ public class Admin extends javax.swing.JFrame {
      * Creates new form Admin
      */
     private RentalSystem RS = new RentalSystem();
-    //private static ArrayList<Comic> Comics = new ArrayList<Comic>();
+    
     private RentalSystem RA = new RentalSystem();
-
-    public Admin() {
+    private RentalMenu mainMenu;
+    public Admin(RentalMenu mainMenu) {
         initComponents();
+        this.mainMenu = mainMenu;
     }
 
     /**
@@ -219,7 +220,8 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.dispose();
+        mainMenu.repaint();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnAddComicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComicActionPerformed
@@ -228,44 +230,77 @@ public class Admin extends javax.swing.JFrame {
         if (ISBN.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please enter a ISBN", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         boolean AddISBNCheck = RA.CheckExistComic(ISBN);
-
         if (AddISBNCheck == true)
         {
             JOptionPane.showMessageDialog(null, "Book Exists!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        String Title = txtTitle.getText();
+        if (Title.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a Title", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String PageS = txtPages.getText();
+        int Pages = 0;
+        if (PageS.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } else
         {
-            String Title = txtTitle.getText();
-            if (Title.equals(""))
+            try
             {
-                JOptionPane.showMessageDialog(null, "Please enter a Title", "Error", JOptionPane.ERROR_MESSAGE);
+                Pages = Integer.parseInt(PageS);
+            } catch (NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            
-            
-            int Pages = Integer.parseInt(txtPages.getText());
-            double Price = Double.parseDouble(txtPrice.getText());
-            String Language = null;
-            String comicType = null;
-            if (radioJP.isSelected())
-            {
-                Language = "JP";
-            }
-
-            if (radioManga.isSelected())
-            {
-                comicType = "Manga";
-            } else
-            {
-                comicType = "Comic";
-            }
-
-            RA.AddComic(ISBN, Title, Pages, Price, Language, comicType);
-
-            JOptionPane.showMessageDialog(null, "Comic Added!");
         }
+
+        String priceS = txtPrice.getText();
+        double Price = 0;
+        if (priceS.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else
+        {
+            try
+            {
+                Price = Double.parseDouble(priceS);
+            } catch (NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        String Language = null;
+        String comicType = null;
+        if (radioJP.isSelected())
+        {
+            Language = "JP";
+        }
+
+        if (radioManga.isSelected())
+        {
+            comicType = "Manga";
+        } else
+        {
+            comicType = "Comic";
+        }
+
+        RA.AddComic(ISBN, Title, Pages, Price, Language, comicType);
+
+        JOptionPane.showMessageDialog(null, "Comic Added!");
 
 
     }//GEN-LAST:event_btnAddComicActionPerformed
