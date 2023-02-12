@@ -6,3 +6,4 @@
 978-4091400017;Doremon;191;12.88;Manga;JP
 12;12;12;12.0;Manga;JP
 123;12;12;12.0;Manga;JP
+12-345678123;GOod niggas;12;12.0;Manga;JP

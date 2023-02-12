@@ -143,6 +143,7 @@ public class RentalMenu extends javax.swing.JFrame {
         txtInfo.setRows(5);
         jScrollPane3.setViewportView(txtInfo);
 
+        btnNextComic.setBackground(new java.awt.Color(98, 102, 239));
         btnNextComic.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnNextComic.setText("Next");
         btnNextComic.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +152,7 @@ public class RentalMenu extends javax.swing.JFrame {
             }
         });
 
+        btnPreviousComic.setBackground(new java.awt.Color(98, 102, 239));
         btnPreviousComic.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPreviousComic.setText("Previous");
         btnPreviousComic.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +268,7 @@ public class RentalMenu extends javax.swing.JFrame {
         txtName.setEditable(false);
         txtName.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
 
+        btnNextMember.setBackground(new java.awt.Color(102, 102, 255));
         btnNextMember.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNextMember.setText("Next");
         btnNextMember.addActionListener(new java.awt.event.ActionListener() {
@@ -274,6 +277,7 @@ public class RentalMenu extends javax.swing.JFrame {
             }
         });
 
+        btnPreviousMember.setBackground(new java.awt.Color(102, 102, 255));
         btnPreviousMember.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPreviousMember.setText("Previous");
         btnPreviousMember.addActionListener(new java.awt.event.ActionListener() {
@@ -431,6 +435,8 @@ public class RentalMenu extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("Search:");
+
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnSearch1.setBackground(new java.awt.Color(0, 153, 51));
         btnSearch1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -659,7 +665,7 @@ public class RentalMenu extends javax.swing.JFrame {
 
         if (index < 0)
         {
-            JOptionPane.showMessageDialog(null, "You have reached the end of this list.");
+            JOptionPane.showMessageDialog(null, "You have reached the beginning of this list.");
             return;
         }
 
