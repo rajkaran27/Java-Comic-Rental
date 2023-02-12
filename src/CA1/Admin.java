@@ -18,12 +18,12 @@ public class Admin extends javax.swing.JFrame {
      * Creates new form Admin
      */
     private RentalSystem RS = new RentalSystem();
-    
+    private RentalMenu RM;
     private RentalSystem RA = new RentalSystem();
-    private RentalMenu mainMenu;
-    public Admin(RentalMenu mainMenu) {
+
+    public Admin() {
         initComponents();
-        this.mainMenu = mainMenu;
+
     }
 
     /**
@@ -220,8 +220,10 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        mainMenu.repaint();
+        dispose();
+        RentalMenu rentalMenu = new RentalMenu();
+        rentalMenu.setVisible(true);
+
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnAddComicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddComicActionPerformed

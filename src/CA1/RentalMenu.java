@@ -698,7 +698,7 @@ public class RentalMenu extends javax.swing.JFrame {
             //search by ISBN
             Comic ComicFound = RS.SearchBook(Input);
 
-            System.out.println(ComicFound);
+            
 
             if (ComicFound == null)
             {
@@ -789,6 +789,8 @@ public class RentalMenu extends javax.swing.JFrame {
         long seconds = (elapsedTime % 60000000000L) / 1000000000L;
         JOptionPane.showMessageDialog(null, "Saving data...");
         JOptionPane.showMessageDialog(null, "Thank you for using Comic Rental.\nWe look forward to serve you in the near future.\n\nYou spent a total of " + minutes + " minutes and " + seconds + " seconds in the program.", "Message", JOptionPane.INFORMATION_MESSAGE);
+        
+        //save rentees into .dat file
         try
         {
             ObjectOutputStream outStream = new ObjectOutputStream(
@@ -822,6 +824,7 @@ public class RentalMenu extends javax.swing.JFrame {
         {
             Admin AD = new Admin();
             AD.setVisible(true);
+            dispose();
         } else
         {
             JOptionPane.showMessageDialog(null, "Wrong Password!");
