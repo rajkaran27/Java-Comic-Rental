@@ -1,7 +1,7 @@
 
 package CA1;
 
-
+import java.io.Serializable;
 
 /**
  *M.Rajkaran
@@ -9,22 +9,20 @@ package CA1;
  * DIT/FT/1B/02
  * 
  */
-public class Comic {
+public class Comic implements Serializable {
 
     private String ISBN, Title;
     private int Pages;
     private double Price;
-    
-    
-
-    
+ 
     public Comic(String ISBN, String Title, int Pages, double Price) {
         this.ISBN = ISBN;
         this.Title = Title;
         this.Pages = Pages;
         this.Price = Price;
+        
     }
-
+   
     public String getISBN() {
         return ISBN;
     }
@@ -49,5 +47,11 @@ public class Comic {
         return String.format("%.2f", (Price/20));
     }
     
-
+    public String getInfo(){
+        String msg;
+        msg = "This is a Comic in English";
+        return msg;
+    }
+    
+    
 }

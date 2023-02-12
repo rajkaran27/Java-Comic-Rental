@@ -4,6 +4,7 @@
  */
 package CA1;
 
+import java.io.*;
 
 /**
  *M.Rajkaran
@@ -11,7 +12,7 @@ package CA1;
  * DIT/FT/1B/02
  * 
  */
-public class Rentee {
+public class Rentee implements Serializable {
 
     private String Name, ID;
     private Comic[] ComicsLoaned;
@@ -22,6 +23,10 @@ public class Rentee {
         this.ComicsLoaned = ComicsLoaned;
     }
 
+    public Comic[] getComicsLoaned() {
+        return ComicsLoaned;
+    }
+
     public String getName() {
         return Name;
     }
@@ -29,6 +34,8 @@ public class Rentee {
     public String getID() {
         return ID;
     }
+    
+    
 
     public String getComicsTitle() {
         String out = "\n";
